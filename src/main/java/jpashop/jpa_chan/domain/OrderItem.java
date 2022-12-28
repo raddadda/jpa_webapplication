@@ -1,0 +1,32 @@
+package jpashop.jpa_chan.domain;
+
+
+import jakarta.persistence.*;
+import jpashop.jpa_chan.domain.Item.Item;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class OrderItem {
+
+    @Id @GeneratedValue
+    @Column(name = "order_Item_id")
+
+   // @ManyToOne
+   // @JoinColumn(name = "Order_id")
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+
+    private int orderPrice;
+    private int count;
+}
